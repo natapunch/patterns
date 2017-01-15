@@ -9,7 +9,7 @@ $config = ConfigSingleton::getInstance();
 
 try {
     $database_factory = new DatabaseAdapterFactory();
-    $adapter = $database_factory->getAdapter($config->get("db"));
+    $adapter = $database_factory->getAdapter($config->get("database")["adapter"]);
     debug($adapter);
 } catch (IncorrectAdapterNameException $e) {
     echo $e->getMessage();

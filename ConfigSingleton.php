@@ -1,5 +1,7 @@
 <?php
 
+require_once "Exceptions/ParametersParseException.php";
+
 /**
  * Class for getting values from config
  *
@@ -7,21 +9,24 @@
  */
 class ConfigSingleton
 {
-
+    const PARAMETERS_FILE = "parameters.json";
 
     private static $instance = null;
     private $params = [];
 
     /**
-     * ConfigSingleton constructor.
+     * ConfigSingleton constructor
+     * @throws ParametersParseException if parameters file is invalid
      */
     private function __construct()
     {
-        $this->params = [
-            'db' => 'oracle',
-            'key2' => 'value2'
-        ];
+        $file_content = file_get_contents(self::PARAMETERS_FILE);
 
+        $parse_result = json_decode($file_content, true);
+        if (is_null($parse_result)) {
+            throw new ParametersParseException("Can't parse file " . self::PARAMETERS_FILE);
+        }
+        $this->params = $parse_result;
     }
 
     /**
