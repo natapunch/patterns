@@ -1,5 +1,7 @@
 <?php
 
+namespace DatabaseAdapters;
+
 /**
  * Database Adapter interface
  *

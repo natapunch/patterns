@@ -1,5 +1,7 @@
 <?php
 
+namespace Exceptions;
+
 /**
  * Exception throws if DatabaseFactory receives incorrect adapter name
  *

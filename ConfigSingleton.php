@@ -1,6 +1,6 @@
 <?php
 
-require_once "Exceptions/ParametersParseException.php";
+use Exceptions\ParametersParseException;
 
 /**
  * Class for getting values from config
