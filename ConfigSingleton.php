@@ -46,7 +46,15 @@ class ConfigSingleton
 
     }
 
-    public function __clone()
+    private function __clone()
+    {
+        //leave empty
+    }
+
+    /**
+     * Protects from creation through unserialize
+     */
+    private function __wakeup()
     {
         //leave empty
     }
