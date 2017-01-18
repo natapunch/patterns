@@ -1,10 +1,9 @@
 <?php
 
-require_once "ConfigSingleton.php";
-require_once "DatabaseAdapterFactory.php";
-require_once "DatabaseAdapters/DatabaseAdapters.php";
-require_once "Exceptions/IncorrectAdapterNameException.php";
-require_once "Exceptions/ParametersParseException.php";
+require_once "Autoloader.php";
+
+// Example of usage addNamespacePath:
+// Autoloader::addNamspacePath('MindK', 'vendor/mindk/src');
 
 try {
     $config = ConfigSingleton::getInstance();

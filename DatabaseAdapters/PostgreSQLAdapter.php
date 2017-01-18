@@ -1,5 +1,7 @@
 <?php
 
+namespace DatabaseAdapters;
+
 /**
  * Implementation of DatabaseAdapterI for postres database
  *

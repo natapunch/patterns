@@ -1,8 +1,10 @@
 <?php
 
-
-require_once "DatabaseAdapters/DatabaseAdapterI.php";
-require_once "Exceptions/IncorrectAdapterNameException.php";
+use DatabaseAdapters\DatabaseAdapters;
+use DatabaseAdapters\DatabaseAdapterI;
+use Exceptions\IncorrectAdapterNameException;
+use DatabaseAdapters\PostgreSQLAdapter;
+use DatabaseAdapters\OracleSQLAdapter;
 
 /**
  * Factory for database adapters

@@ -1,6 +1,6 @@
 <?php
 
-require_once "DatabaseAdapterI.php";
+namespace DatabaseAdapters;
 
 /**
  * IMplementation of DatabaseAdapterI for Oracle database
