@@ -24,7 +24,8 @@ class Autoloader
      * @param $namespace    Root namespace
      * @param $root_path    Namespace root path
      */
-    public static function addNamspacePath($namespace, $root_path){
+    public static function addNamespacePath($namespace, $root_path)
+    {
         self::$ns_map[$namespace] = $root_path;
     }
 
@@ -33,21 +34,25 @@ class Autoloader
      *
      * @param $classname    Class name
      */
-    protected function load($classname){
-        if($path = $this->getClassPath($classname) ){
+    protected function load($classname)
+    {
+        if ($path = $this->getClassPath($classname)) {
             require_once $path;
         }
     }
 
     /**
      * Get realpath to the class definition file
+     * @param $classname string name of class
+     * @return string
      */
-    protected function getClassPath($classname){
+    protected function getClassPath($classname)
+    {
         $class_path = $classname . '.php';
-        if( !empty(self::$ns_map) ){
-            foreach(self::$ns_map as $ns => $path){
+        if (!empty(self::$ns_map)) {
+            foreach (self::$ns_map as $ns => $path) {
                 $lookup_pattern = sprintf('/^%s/', $ns);
-                if(preg_match($lookup_pattern, $classname)){
+                if (preg_match($lookup_pattern, $classname)) {
                     $class_path = preg_replace($lookup_pattern, $path, $class_path);
                     break;
                 }
