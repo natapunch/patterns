@@ -21,10 +21,10 @@ class Autoloader
     /**
      * Register namespace root path
      *
-     * @param $namespace    Root namespace
-     * @param $root_path    Namespace root path
+     * @param string $namespace Root namespace
+     * @param string $root_path Namespace root path
      */
-    public static function addNamespacePath($namespace, $root_path)
+    public static function addNamespacePath(string $namespace, string $root_path)
     {
         self::$ns_map[$namespace] = $root_path;
     }
@@ -32,9 +32,9 @@ class Autoloader
     /**
      * Load class
      *
-     * @param $classname    Class name
+     * @param string $classname Class name
      */
-    protected function load($classname)
+    protected function load(string $classname)
     {
         if ($path = $this->getClassPath($classname)) {
             require_once $path;
@@ -46,7 +46,7 @@ class Autoloader
      * @param $classname string name of class
      * @return string
      */
-    protected function getClassPath($classname)
+    protected function getClassPath(string $classname): string
     {
         $class_path = $classname . '.php';
         if (!empty(self::$ns_map)) {
