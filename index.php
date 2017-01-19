@@ -1,5 +1,8 @@
 <?php
 
+use Exceptions\IncorrectAdapterNameException;
+use Exceptions\ParametersParseException;
+
 require_once "Autoloader.php";
 
 // Example of usage addNamespacePath:
