@@ -5,6 +5,7 @@
  */
 class Autoloader
 {
+    private static $instance=null;
     /**
      * @var array   Namespace mapping
      */
@@ -13,10 +14,23 @@ class Autoloader
     /**
      * Autoloader constructor.
      */
-    public function __construct()
+    private function __construct()
     {
+        if(null===self::$instance){
+            self::$instance=new self();
+        }else {
+            return self::$instance;
+        }
+
         spl_autoload_register([$this, 'load']);
     }
+
+//    /**Registration Autoloader .
+//     */
+//    public function register()
+//    {
+//        spl_autoload_register([$this, 'load']);
+//    }
 
     /**
      * Register namespace root path
@@ -60,6 +74,10 @@ class Autoloader
         }
 
         return realpath(str_replace('\\', DIRECTORY_SEPARATOR, $class_path));
+    }
+    private function __clone()
+    {
+        //leave empty
     }
 }
 
