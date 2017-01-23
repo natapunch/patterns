@@ -5,10 +5,22 @@
  */
 class Autoloader
 {
+    private static $instance=null;
     /**
      * @var array   Namespace mapping
      */
     protected static $ns_map = [];
+    /**
+     * Load class
+     *
+     * @param string $classname Class name
+     */
+    protected function load(string $classname)
+    {
+        if ($path = $this->getClassPath($classname)) {
+            require_once $path;
+        }
+    }
 
     /**
      * Autoloader constructor.
@@ -17,6 +29,17 @@ class Autoloader
     {
         spl_autoload_register([$this, 'load']);
     }
+
+    public static function getInstance()
+    {
+        //check if initialized
+        if (self::$instance == null) {
+            //init
+            self::$instance = new self();
+        }
+        return self::$instance;
+    }
+
 
     /**
      * Register namespace root path
@@ -29,17 +52,6 @@ class Autoloader
         self::$ns_map[$namespace] = $root_path;
     }
 
-    /**
-     * Load class
-     *
-     * @param string $classname Class name
-     */
-    protected function load(string $classname)
-    {
-        if ($path = $this->getClassPath($classname)) {
-            require_once $path;
-        }
-    }
 
     /**
      * Get realpath to the class definition file
@@ -61,6 +73,12 @@ class Autoloader
 
         return realpath(str_replace('\\', DIRECTORY_SEPARATOR, $class_path));
     }
+
+    private function __clone()
+    {
+        //leave empty
+    }
+
 }
 
-new Autoloader();
+Autoloader::getInstance();
