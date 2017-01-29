@@ -1,5 +1,5 @@
 {
   "database": {
-    "adapter": "postgres"
+    "adapter": "oracle"
   }
 }
