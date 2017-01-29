@@ -2,6 +2,10 @@
 
 use Exceptions\IncorrectAdapterNameException;
 use Exceptions\ParametersParseException;
+use Decorator\CitizenDecorator;
+use Decorator\StudPerson;
+use Decorator\StrongDecorator;
+
 
 require_once "Autoloader.php";
 
@@ -18,11 +22,18 @@ try {
 } catch (IncorrectAdapterNameException $e) {
     echo $e->getMessage();
 }
-
-
 function debug($value)
 {
     echo "<pre>";
     print_r($value);
     echo "</pre>";
 }
+
+
+echo "<pre>";
+echo "Паттерн Decorator \n <br>";
+
+$q=new CitizenDecorator(new StrongDecorator(new StudPerson()));
+$q->describe();
+
+
